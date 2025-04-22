@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AgenticWealth | Market Data</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* Additional styling for market data enhancements */
+    .filter-bar {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .filter-btn {
+      background: #1a1a3a;
+      color: #00f6ff;
+      border: none;
+      margin: 0 0.5rem;
+      padding: 0.5rem 1rem;
+      font-family: 'Orbitron', sans-serif;
+      cursor: pointer;
+      border-radius: 4px;
+      box-shadow: 0 0 8px 2px #00f6ff33;
+      transition: background 0.3s;
+    }
+    .filter-btn:hover {
+      background: #00f6ff22;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-glow">Agentic</span><span class="logo-blue">Wealth</span>
+    </div>
+    <nav>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="portfolio.html" class="nav-link">Portfolio</a>
+      <a href="analytics.html" class="nav-link">Analytics</a>
+      <a href="pension-planner.html" class="nav-link">Pension Planner</a>
+      <a href="market-data.html" class="nav-link active">Market Data</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>Live Market Data</h1>
+      <p class="tagline">View the latest crypto prices and global market indices, alongside interactive charts and graphs.</p>
+    </section>
+    <div class="filter-bar">
+      <button class="filter-btn" onclick="filterData('crypto')">Crypto</button>
+      <button class="filter-btn" onclick="filterData('global')">Global Markets</button>
+      <button class="filter-btn" onclick="filterData('all')">Show All</button>
+    </div>
+    <section class="market-data-section" id="market-data-section">
+      <div class="market-data-card" data-type="crypto">
+        <h2>Crypto Market Data</h2>
+        <!-- Crypto widget embed from CoinMarketCap (example placeholder) -->
+        <iframe src="https://widget.coinlib.io/widget?type=multi_v2&theme=dark&width=100%25&height=500" height="500"></iframe>
+      <!-- Global market embed widget from TradingView (example placeholder)  </div> -->
+      <div class="market-data-card" data-type="global">
+        <h2>Global Market Indices</h2>
+        <!-- Global market embed widget from TradingView (example placeholder) -->
+        <iframe src="https://s.tradingview.com/embed-widget/market-overview/?locale=en#%7B%22colorTheme%22%3A%22dark%22%2C%22dateRange%22%3A%2212M%22%2C%22showChart%22%3Atrue%2C%22scalePosition%22%3A%22right%22%2C%22trendLineColor%22%3A%22rgba(41%2C98%2C255%2C1)%22%2C%22trendLineWidth%22%3A2%2C%22underLineColor%22%3A%22rgba(41%2C98%2C255%2C0.3)%22%2C%22underLineWidth%22%3A2%2C%22isTransparent%22%3Afalse%2C%22largeChartUrl%22%3A%22%22%2C%22locale%22%3A%22en%22%2C%22showSymbolLogo%22%3Atrue%2C%22showFloatingTooltip%22%3Afalse%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22400%22%7D" height="500"></iframe>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 AgenticWealth. All rights reserved.
+  </footer>
+  <script src="app.js"></script>
+  <script>
+    // Auto-refresh functionality: Refresh embedded iframes every 5 minutes
+    setInterval(function(){
+      document.querySelectorAll('.market-data-card iframe').forEach(function(iframe){
+        // Reload iframe by resetting the src attribute
+        iframe.src = iframe.src;
+      });
+    }, 300000); // 300000 ms = 5 minutes
+
+    // Filter functionality for market data cards
+    function filterData(type) {
+      const cards = document.querySelectorAll('.market-data-card');
+      cards.forEach(card => {
+        if (type === 'all') {
+          card.style.display = 'block';
+        } else if (card.getAttribute('data-type') === type) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
